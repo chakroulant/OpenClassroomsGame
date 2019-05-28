@@ -1,13 +1,27 @@
 package com.ocr.chak;
 
+import java.util.Scanner;
+
 public abstract class Character {
-    protected int playerNumber, characterClass, level, life, strengh, agility, intelligence;
+    protected int playerNumber, characterClass, level, life, strenght, agility, intelligence;
     protected static boolean alive;
+    protected int action, damage;
+    String attackName;
+    Scanner scann = new Scanner(System.in);
+    protected boolean goodAnswer;
 
     public Character(int playerNumber, int characterClass, int level, int life, int strenght, int agility,  int intelligence) {
     }
 
-    public abstract void Attacks(Character victim);
+    public void Attacks(Character victim){
+
+        do {
+            System.out.println("Joueur " + playerNumber + " (" + life + " Vitalité) veuillez choisir votre action (1 : Attaque basique, 2 : Attaque Spéciale)");
+            action = scann.nextInt();
+            scann.nextLine();
+            goodAnswer = (action == 1 || action == 2);
+        }while(!goodAnswer);
+    }
 
     public abstract void Presentation();
 
@@ -52,12 +66,12 @@ public abstract class Character {
         this.life = life;
     }
 
-    public int getStrengh() {
-        return strengh;
+    public int getStrenght() {
+        return strenght;
     }
 
-    public void setStrengh(int strengh) {
-        this.strengh = strengh;
+    public void setStrenght(int strengh) {
+        this.strenght = strengh;
     }
 
     public int getAgility() {
@@ -82,5 +96,13 @@ public abstract class Character {
 
     public static void setAlive(boolean alive) {
         Character.alive = alive;
+    }
+
+    public int getAction() {
+        return action;
+    }
+
+    public void setAction(int action) {
+        this.action = action;
     }
 }

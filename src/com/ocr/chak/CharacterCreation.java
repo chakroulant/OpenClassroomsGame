@@ -30,18 +30,19 @@ public class CharacterCreation {
         System.out.println("Création du personnage du Joueur " + playerNumber);
 
         characterClass = AskSomething("Veuilliez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage)", 3);
+        System.out.println(characterClass);
 
         level = AskSomething("Choix du niveau du champion : ", 100); //A verifier si le niv max est à 100
         life = level * 5;
 
         nbStatsPointsAvailble = level;
-        strenght = AskSomething("Choix de la force du champion :", nbStatsPointsAvailble);
+        strenght = AskSomething("Choix de la force :", nbStatsPointsAvailble);
 
         nbStatsPointsAvailble = level - strenght;
-        agility = AskSomething("Choix de l'agilité du champioin :", nbStatsPointsAvailble);
+        agility = AskSomething("Choix de l'agilité :", nbStatsPointsAvailble);
 
         nbStatsPointsAvailble = level - strenght - agility;
-        intelligence = AskSomething("Choix de l'intelligence du champion :", nbStatsPointsAvailble);
+        intelligence = AskSomething("Choix de l'intelligence :", nbStatsPointsAvailble);
 
         switch (characterClass) {
             case 1 :

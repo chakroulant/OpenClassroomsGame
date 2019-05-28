@@ -4,11 +4,37 @@ public class Rogue extends Character {
 
     public Rogue(int playerNumber, int characterClass, int level, int life, int strenght, int agility, int intelligence) {
         super(playerNumber, characterClass, level, life, strenght, agility, intelligence);
+        this.playerNumber = playerNumber;
+        this.characterClass = characterClass;
+        this.level = level;
+        this.life = life;
+        this.strenght = strenght;
+        this.agility = agility;
+        this.intelligence = intelligence;
     }
 
     @Override
     public void Attacks(Character victim) {
+        switch (action) {
+            case 1 :
+                attackName = "Tir à l'Arc";
+                damage = agility;
+                victim.setLife(victim.getLife() - damage);
+                System.out.println("Le Joueur " + playerNumber + " utilise " + attackName + " et inflige " + damage + " de dommages.");
+                System.out.println("Le Joueur " + victim.getPlayerNumber() + " perd " + damage + " points de vie");
+                Alive(victim);
+                break;
+            case 2 :
+                attackName = "Concentration";
+                damage = level;
+                agility += damage;
+                System.out.println("Le Joueur " + playerNumber + " utilise " + attackName + " et gagne " + damage + " d'agilité.");
+                break;
+            default :
+                System.out.println("Vous n'avez pas choisi parmis les 2 attaques proposées ");
+                break;
 
+        }
     }
 
     @Override
