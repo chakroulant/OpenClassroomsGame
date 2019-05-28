@@ -7,7 +7,6 @@ public class Rungame {
         player1.Presentation();
         Character player2 = CharacterCreation.CharacterCreation(2);
         player2.Presentation();
-        System.out.println(player1.getCharacterClass() + player2.getCharacterClass());
         new Fight(player1, player2);
 
     }

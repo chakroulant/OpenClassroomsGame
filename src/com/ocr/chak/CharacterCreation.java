@@ -1,19 +1,24 @@
 package com.ocr.chak;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CharacterCreation {
 
     public static int AskSomething(String asking, int numberOfChoices) {
         boolean goodAnswer;
-        Scanner sc = new Scanner(System.in);
-        int answer;
+        Scanner scann = new Scanner(System.in);
+        int answer = 0;
 
         do {
-            System.out.println(asking);
-            answer = sc.nextInt();
-            sc.nextLine();
-            goodAnswer = (0 <= answer && answer <= numberOfChoices );
+            try {
+                System.out.println(asking);
+                answer = scann.nextInt();
+                scann.nextLine();
+                goodAnswer = (0 <= answer && answer <= numberOfChoices);
+            } catch ( InputMismatchException e) {
+                goodAnswer = false;
+            }
             if (!goodAnswer)
                 System.out.println("Vous avez choisis un chiffre trop petit ou trop grand");
         }while(!goodAnswer);
@@ -30,7 +35,6 @@ public class CharacterCreation {
         System.out.println("Création du personnage du Joueur " + playerNumber);
 
         characterClass = AskSomething("Veuilliez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage)", 3);
-        System.out.println(characterClass);
 
         level = AskSomething("Choix du niveau du champion : ", 100); //A verifier si le niv max est à 100
         life = level * 5;
@@ -38,21 +42,21 @@ public class CharacterCreation {
         nbStatsPointsAvailble = level;
         strenght = AskSomething("Choix de la force :", nbStatsPointsAvailble);
 
-        nbStatsPointsAvailble = level - strenght;
+        nbStatsPointsAvailble -= strenght;
         agility = AskSomething("Choix de l'agilité :", nbStatsPointsAvailble);
 
-        nbStatsPointsAvailble = level - strenght - agility;
+        nbStatsPointsAvailble -= agility;
         intelligence = AskSomething("Choix de l'intelligence :", nbStatsPointsAvailble);
 
         switch (characterClass) {
             case 1 :
-                character = new Warrior(playerNumber, characterClass, level, life, strenght, intelligence, agility);
+                character = new Warrior(playerNumber, characterClass, level, life, strenght, agility, intelligence);
                 break;
             case 2 :
-                character = new Rogue(playerNumber, characterClass, level, life, strenght, intelligence, agility);
+                character = new Rogue(playerNumber, characterClass, level, life, strenght, agility, intelligence);
                 break;
             case 3 :
-                character = new Mage(playerNumber, characterClass, level, life, strenght, intelligence, agility);
+                character = new Mage(playerNumber, characterClass, level, life, strenght, agility, intelligence);
                 break;
             default :
                 System.out.println("La classe du personnage a mal été choisie !");
@@ -60,6 +64,4 @@ public class CharacterCreation {
         }
         return character;
     }
-
-
 }

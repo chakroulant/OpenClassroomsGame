@@ -13,12 +13,14 @@ public class Rogue extends Character {
         this.intelligence = intelligence;
     }
 
-    @Override
+
     public void Attacks(Character victim) {
+        super.Attacks(victim);
         switch (action) {
             case 1 :
                 attackName = "Tir à l'Arc";
                 damage = agility;
+
                 victim.setLife(victim.getLife() - damage);
                 System.out.println("Le Joueur " + playerNumber + " utilise " + attackName + " et inflige " + damage + " de dommages.");
                 System.out.println("Le Joueur " + victim.getPlayerNumber() + " perd " + damage + " points de vie");
@@ -28,6 +30,7 @@ public class Rogue extends Character {
                 attackName = "Concentration";
                 damage = level;
                 agility += damage;
+
                 System.out.println("Le Joueur " + playerNumber + " utilise " + attackName + " et gagne " + damage + " d'agilité.");
                 break;
             default :
@@ -39,11 +42,8 @@ public class Rogue extends Character {
 
     @Override
     public void Presentation() {
-
+        System.out.println("Houhou Joueur " + playerNumber + " niveau " + level + " je possède " + life + " de vitalité " + strenght + " de force " + agility + " d'aglité  " + intelligence + " d'intelligence !");
     }
 
-    @Override
-    public void Alive(Character character) {
 
-    }
 }

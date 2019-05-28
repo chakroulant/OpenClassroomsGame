@@ -1,6 +1,7 @@
 package com.ocr.chak;
 
 public class Mage extends Character {
+    protected int heal;
 
     public Mage(int playerNumber, int characterClass, int level, int life, int strenght, int agility, int intelligence) {
         super(playerNumber, characterClass, level, life, strenght, agility, intelligence);
@@ -13,12 +14,14 @@ public class Mage extends Character {
         this.intelligence = intelligence;
     }
 
-    @Override
+
     public void Attacks(Character victim) {
+        super.Attacks(victim);
         switch (action) {
             case 1 :
                 attackName = "Boule de feu";
                 damage = intelligence;
+
                 victim.setLife(victim.getLife() - damage);
                 System.out.println("Le Joueur " + playerNumber + " utilise " + attackName + " et inflige " + damage + " de dommages.");
                 System.out.println("Le Joueur " + victim.getPlayerNumber() + " perd " + damage + " points de vie");
@@ -26,10 +29,11 @@ public class Mage extends Character {
                 break;
             case 2 :
                 attackName = "Soin";
-                int heal = intelligence * 2;
+                heal = intelligence * 2;
                 boolean toohigh = ((heal + life ) > (level * 5) );
+
                 if (!toohigh) {
-                    life += heal;
+                    this.life += heal;
                     System.out.println("Le Joueur " + playerNumber + " utilise " + attackName + " et gagne " + heal + " en vitalité.");
                 }else{
                     heal = (level * 5) - life;
@@ -45,11 +49,8 @@ public class Mage extends Character {
 
     @Override
     public void Presentation() {
-
+        System.out.println("Abracadabra Joueur " + playerNumber + " niveau " + level + " je possède " + life + " de vitalité " + strenght + " de force " + agility + " d'aglité  " + intelligence + " d'intelligence !");
     }
 
-    @Override
-    public void Alive(Character character) {
 
-    }
 }

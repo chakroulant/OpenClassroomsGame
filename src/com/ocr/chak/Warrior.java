@@ -33,6 +33,7 @@ public class Warrior extends Character {
                 damage = 2 * strenght;
                 victim.setLife(victim.getLife() - damage);
                 life = (life - (damage / 4));
+
                 System.out.println("Joueur " + playerNumber + " utilise " + attackName + " et inflige " + damage + " de dommages.");
                 System.out.println("Joueur " + victim.getPlayerNumber() + " perd " + damage + " points de vie");
                 Alive(victim);
@@ -46,11 +47,7 @@ public class Warrior extends Character {
 
     @Override
     public void Presentation() {
-
+        System.out.println("Waarg Joueur " + playerNumber + " niveau " + level + " je possède " + life + " de vitalité " + strenght + " de force " + agility + " d'aglité  " + intelligence + " d'intelligence !");
     }
 
-    @Override
-    public void Alive(Character character) {
-
-    }
 }

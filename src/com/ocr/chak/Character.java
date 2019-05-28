@@ -1,5 +1,6 @@
 package com.ocr.chak;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public abstract class Character {
@@ -9,6 +10,7 @@ public abstract class Character {
     String attackName;
     Scanner scann = new Scanner(System.in);
     protected boolean goodAnswer;
+    protected String presentation = "Joueur " + playerNumber + " niveau " + level + " je possède " + life + " de vitalité " + strenght + " de force " + agility + " d'aglité  " + intelligence + " d'intelligence !";
 
     public Character(int playerNumber, int characterClass, int level, int life, int strenght, int agility,  int intelligence) {
     }
@@ -16,10 +18,14 @@ public abstract class Character {
     public void Attacks(Character victim){
 
         do {
-            System.out.println("Joueur " + playerNumber + " (" + life + " Vitalité) veuillez choisir votre action (1 : Attaque basique, 2 : Attaque Spéciale)");
-            action = scann.nextInt();
-            scann.nextLine();
-            goodAnswer = (action == 1 || action == 2);
+            try {
+                System.out.println("Joueur " + playerNumber + " (" + life + " Vitalité) veuillez choisir votre action (1 : Attaque basique, 2 : Attaque Spéciale)");
+                action = scann.nextInt();
+                scann.nextLine();
+                goodAnswer = (action == 1 || action == 2);
+            } catch (InputMismatchException e) {
+                goodAnswer = false;
+            }
         }while(!goodAnswer);
     }
 
@@ -104,5 +110,13 @@ public abstract class Character {
 
     public void setAction(int action) {
         this.action = action;
+    }
+
+    public String getPresentation() {
+        return presentation;
+    }
+
+    public void setPresentation(String presentation) {
+        this.presentation = presentation;
     }
 }
