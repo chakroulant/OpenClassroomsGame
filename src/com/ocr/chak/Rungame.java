@@ -7,6 +7,7 @@ public class Rungame {
         player1.Presentation();
         Character player2 = CharacterCreation.CharacterCreation(2);
         player2.Presentation();
+
         new Fight(player1, player2);
 
     }
