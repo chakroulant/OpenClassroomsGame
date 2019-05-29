@@ -27,10 +27,7 @@ public class CharacterCreation {
 
     public static Character CharacterCreation(int playerNumber) {
         int characterClass, level, life, strenght, agility, intelligence, nbStatsPointsAvailble;
-        boolean goodAnswer;
-        Scanner sc = new Scanner(System.in);
         Character character = null;
-        String asking;
 
         System.out.println("Création du personnage du Joueur " + playerNumber);
 
