@@ -13,6 +13,10 @@ public class Rogue extends Character {
         this.intelligence = intelligence;
     }
 
+    /**
+     *This is the description for the Rogue attacks and their effects.
+     * @param victim the character object receiving the attack
+     */
 
     public void Attacks(Character victim) {
         super.Attacks(victim);
@@ -24,7 +28,7 @@ public class Rogue extends Character {
                 victim.setLife(victim.getLife() - damage);
                 System.out.println("Le Joueur " + playerNumber + " utilise " + attackName + " et inflige " + damage + " de dommages.");
                 System.out.println("Le Joueur " + victim.getPlayerNumber() + " perd " + damage + " points de vie");
-                Alive(victim);
+                victim.Alive();
                 break;
             case 2 :
                 attackName = "Concentration";

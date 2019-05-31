@@ -5,15 +5,18 @@ import java.util.Scanner;
 
 public abstract class Character {
     protected int playerNumber, characterClass, level, life, strenght, agility, intelligence;
-    protected static boolean alive;
+    protected boolean alive ;
     protected int action, damage;
     String attackName;
     Scanner scann = new Scanner(System.in);
     protected boolean goodAnswer;
-    protected String presentation = "Joueur " + playerNumber + " niveau " + level + " je possède " + life + " de vitalité " + strenght + " de force " + agility + " d'aglité  " + intelligence + " d'intelligence !";
 
     public Character(int playerNumber, int characterClass, int level, int life, int strenght, int agility,  int intelligence) {
     }
+
+    /**
+     * Partie commune de l'attaque de tous les champions, soit la prise du type d'attaque.
+     */
 
     public void Attacks(Character victim){
 
@@ -31,12 +34,16 @@ public abstract class Character {
 
     public abstract void Presentation();
 
-    public void Alive(Character character) {
-        if (character.getLife() > 0)
-            character.setAlive(true);
+    /**
+     * Methode permettant simplement de definir si le champion est encore en vie.
+     */
+
+    public void Alive() {
+        if (life > 0)
+            alive = (true);
         else {
-            character.setAlive(false);
-            System.out.println("Joueur " + character.getPlayerNumber() + " est mort");
+            alive = (false);
+            System.out.println("Joueur " + playerNumber + " est mort");
         }
     }
 
@@ -96,12 +103,12 @@ public abstract class Character {
         this.intelligence = intelligence;
     }
 
-    public static boolean isAlive() {
+    public boolean isAlive() {
         return alive;
     }
 
-    public static void setAlive(boolean alive) {
-        Character.alive = alive;
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 
     public int getAction() {
@@ -112,11 +119,5 @@ public abstract class Character {
         this.action = action;
     }
 
-    public String getPresentation() {
-        return presentation;
-    }
 
-    public void setPresentation(String presentation) {
-        this.presentation = presentation;
-    }
 }

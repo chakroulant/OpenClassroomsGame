@@ -13,6 +13,10 @@ public class Warrior extends Character {
         this.intelligence = intelligence;
     }
 
+    /**
+     *This is the description for the Warrior attacks and their effects.
+     * @param victim the character object receiving the attack
+     */
 
     public void Attacks(Character victim) {
         super.Attacks(victim);
@@ -26,7 +30,7 @@ public class Warrior extends Character {
                 victim.setLife(victim.getLife() - damage);
                 System.out.println("Joueur " + playerNumber + " utilise " + attackName + " et inflige " + damage + " de dommages.");
                 System.out.println("Joueur " + victim.getPlayerNumber() + " perd " + damage + " points de vie");
-                Alive(victim);
+                victim.Alive();
                 break;
             case 2:
                 attackName = "Coup de rage";
@@ -36,7 +40,7 @@ public class Warrior extends Character {
 
                 System.out.println("Joueur " + playerNumber + " utilise " + attackName + " et inflige " + damage + " de dommages.");
                 System.out.println("Joueur " + victim.getPlayerNumber() + " perd " + damage + " points de vie");
-                Alive(victim);
+                victim.Alive();
                 System.out.println("Joueur " + playerNumber + " perd " + damage / 4 + " points de vie");
                 break;
             default:

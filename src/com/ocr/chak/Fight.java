@@ -3,6 +3,12 @@ package com.ocr.chak;
 
 public class Fight {
 
+    /**
+     * Running a fight, with basic attack for each opponent and setting the loser at the end.
+     * @param player1 will be the first to engage combat.
+     * @param player2 will be the one to answer to the attack, by and attack.
+     */
+
     public Fight(Character player1, Character player2) {
         do {
             player1.Attacks(player2);

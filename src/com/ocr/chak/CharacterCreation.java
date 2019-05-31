@@ -5,6 +5,13 @@ import java.util.Scanner;
 
 public class CharacterCreation {
 
+    /**
+     *
+     * @param asking
+     * @param numberOfChoices
+     * @return
+     */
+
     public static int AskSomething(String asking, int numberOfChoices) {
         boolean goodAnswer;
         Scanner scann = new Scanner(System.in);
@@ -24,6 +31,12 @@ public class CharacterCreation {
         }while(!goodAnswer);
         return answer;
     }
+
+    /**
+     *
+     * @param playerNumber
+     * @return
+     */
 
     public static Character CharacterCreation(int playerNumber) {
         int characterClass, level, life, strenght, agility, intelligence, nbStatsPointsAvailble;
