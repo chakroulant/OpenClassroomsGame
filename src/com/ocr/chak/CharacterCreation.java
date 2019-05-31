@@ -6,9 +6,9 @@ import java.util.Scanner;
 public class CharacterCreation {
 
     /**
-     *
-     * @param asking
-     * @param numberOfChoices
+     *Ask a number and catch exception
+     * @param asking sentence to be displayed
+     * @param numberOfChoices setting the number of possibility
      * @return
      */
 
@@ -33,9 +33,9 @@ public class CharacterCreation {
     }
 
     /**
-     *
-     * @param playerNumber
-     * @return
+     *Asking and setting all the different stats then creating the object Character with all the settings.
+     * @param playerNumber set the player order
+     * @return the object Character
      */
 
     public static Character CharacterCreation(int playerNumber) {
