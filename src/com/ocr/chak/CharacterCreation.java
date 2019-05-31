@@ -47,6 +47,8 @@ public class CharacterCreation {
         characterClass = AskSomething("Veuilliez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage)", 3);
 
         level = AskSomething("Choix du niveau du champion : ", 100); //A verifier si le niv max est à 100
+        if (level == 0)
+            level = AskSomething("Vous ne pouvez pas choisir un niveau de champion nul.\nChoix du niveau du champion : ", 100);
         life = level * 5;
 
         nbStatsPointsAvailble = level;
