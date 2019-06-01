@@ -12,22 +12,33 @@ public class CharacterCreation {
      * @return
      */
 
-    public static int AskSomething(String asking, int numberOfChoices) {
-        boolean goodAnswer;
+    public static int AskNumber(String asking, int numberOfChoices, boolean zeroAllowed) {
+        boolean goodAnswer = false;
         Scanner scann = new Scanner(System.in);
-        int answer = 0;
+        int answer;
 
         do {
+            answer = 0; // initialisation nécessaire pour les messages d'erreur de saisie.
+            boolean isNumber = true;
+            System.out.println(asking);
             try {
-                System.out.println(asking);
                 answer = scann.nextInt();
-                scann.nextLine();
                 goodAnswer = (0 <= answer && answer <= numberOfChoices);
-            } catch ( InputMismatchException e) {
+            } catch (InputMismatchException e) {
+                scann.nextLine();
                 goodAnswer = false;
+                isNumber = false;
+                System.out.println("Vous n'avez même pas saisi un chiffre !");
             }
-            if (!goodAnswer)
-                System.out.println("Vous avez choisis un chiffre trop petit ou trop grand");
+            if (numberOfChoices < answer || answer < 0) {
+                System.out.println("Vous avez saisi un chiffre trop petit ou trop grand ");
+                goodAnswer = false;
+            }else if (!zeroAllowed && answer == 0 ) {
+                if (isNumber) // Condition nécessaire pour éviter un cumul d'erreur de message du à l'initialisation et le catch d'exception
+                    System.out.println("Vous ne pouvez pas choisir de valeur nulle !");
+                goodAnswer = false;
+            } else
+                goodAnswer = true;
         }while(!goodAnswer);
         return answer;
     }
@@ -44,21 +55,24 @@ public class CharacterCreation {
 
         System.out.println("Création du personnage du Joueur " + playerNumber);
 
-        characterClass = AskSomething("Veuilliez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage)", 3);
+        characterClass = AskNumber("Veuilliez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage)", 3, false);
 
-        level = AskSomething("Choix du niveau du champion : ", 100); //A verifier si le niv max est à 100
-        if (level == 0)
-            level = AskSomething("Vous ne pouvez pas choisir un niveau de champion nul.\nChoix du niveau du champion : ", 100);
+        level = AskNumber("Choix du niveau du champion : ", 100, false); //A verifier si le niv max est à 100
         life = level * 5;
 
-        nbStatsPointsAvailble = level;
-        strenght = AskSomething("Choix de la force :", nbStatsPointsAvailble);
+        do {
+            nbStatsPointsAvailble = level;
+            strenght = AskNumber("Choix de la force :", nbStatsPointsAvailble, true);
 
-        nbStatsPointsAvailble -= strenght;
-        agility = AskSomething("Choix de l'agilité :", nbStatsPointsAvailble);
+            nbStatsPointsAvailble -= strenght;
+            agility = AskNumber("Choix de l'agilité :", nbStatsPointsAvailble, true);
 
-        nbStatsPointsAvailble -= agility;
-        intelligence = AskSomething("Choix de l'intelligence :", nbStatsPointsAvailble);
+            nbStatsPointsAvailble -= agility;
+            intelligence = AskNumber("Choix de l'intelligence :", nbStatsPointsAvailble, (nbStatsPointsAvailble == 0));
+
+            if (intelligence != nbStatsPointsAvailble)
+                System.out.println("La somme de vos statistiques doit correspondre à votre niveau, veuillez recommencer ");
+        }while(intelligence != nbStatsPointsAvailble);
 
         switch (characterClass) {
             case 1 :

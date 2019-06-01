@@ -35,7 +35,7 @@ public abstract class Character {
     public abstract void Presentation();
 
     /**
-     * Methode permettant simplement de definir si le champion est encore en vie.
+     * Permet simplement de definir si le champion est encore en vie.
      */
 
     public void Alive() {
